@@ -19,15 +19,15 @@ JOIN customer_dim_sv
 DROP TABLE IF EXISTS invoice_fact;
 
 CREATE TABLE invoice_fact (
-    customer_sk INTEGER,
-    invoice_id INTEGER,
-    invoice_date DATETIME,
-    billing_address TEXT,
-    billing_city TEXT,
-    billing_state TEXT,
-    billing_country TEXT,
-    billing_postal_code TEXT,
-    total NUMERIC(10,2),
+    customer_sk INTEGER, -- Surrogate key for the fact's customer. References `customer_dim`.
+    invoice_id INTEGER, -- Unique identifier for an invoice.
+    invoice_date DATETIME, -- The date of the invoice.
+    billing_address TEXT, -- The billing address associated with an invoice.
+    billing_city TEXT, -- The billing city associated with an invoice.
+    billing_state TEXT, -- The billing state associated with an invoice.
+    billing_country TEXT, -- The billing country associated with an invoice.
+    billing_postal_code TEXT, -- The billing postal code associated with an invoice.
+    total NUMERIC(10,2), -- The total amount billed on the invoice.
     FOREIGN KEY (customer_sk) REFERENCES customer_dim (customer_sk)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
