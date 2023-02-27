@@ -32,7 +32,7 @@ def main():
     ddl_lines_split = [list(line.strip().partition(" ")) for line in ddl_lines]
     output_lines = []
     for line in ddl_lines_split:
-        if '--' in line[2]:
+        if "--" in line[2]:
             final_output_obj = dict()
             final_output_obj["column_name"] = line[0]
             final_output_obj["data_type"] = line[2].split(" -- ")[0].replace(",", "")
@@ -46,7 +46,7 @@ def main():
     markdown_lines.append(header_row)
     for line in output_lines:
         markdown_lines.append(list(line.values()))
-    
+
     print(tabulate(markdown_lines, headers="firstrow", tablefmt="github"))
 
     md_table = make_markdown_table(line_list=markdown_lines)
